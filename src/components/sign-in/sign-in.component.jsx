@@ -61,10 +61,10 @@ class SignIn extends React.Component {
                         <CustomButton type="submit">Sign In</CustomButton>
                         <span>Or login using...</span>
                         <div className="sign-in-firebase">
-                            <CustomButton onClick={SignInWithGoogle}>
+                            <CustomButton type="button" onClick={SignInWithGoogle}>
                                 <GoogleLogo className="logo" />
                             </CustomButton>
-                            <CustomButton onClick={SignInWithTwitter}>
+                            <CustomButton type="button" onClick={SignInWithTwitter}>
                                 <TwitterLogo className="logo" />
                             </CustomButton>
                             <CustomButton>
