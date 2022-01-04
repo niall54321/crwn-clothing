@@ -3,7 +3,7 @@ import React from "react";
 import FormInput from "../form-input/form-input.component";
 import CustomButton from "../custom-button/custom-button.component";
 
-import { SignInWithGoogle, SignInWithTwitter } from "../../firebase/firebase.utils";
+import { auth, SignInWithGoogle, SignInWithTwitter } from "../../firebase/firebase.utils";
 
 import { ReactComponent as GoogleLogo } from '../../assets/google.svg';
 import { ReactComponent as TwitterLogo } from '../../assets/twitter.svg';
@@ -22,10 +22,17 @@ class SignIn extends React.Component {
         }
     }
 
-    handleSubmit = event => {
+    handleSubmit = async event => {
         event.preventDefault();
 
-        this.setState({ email: '', password: '' })
+        const {email, password } = this.state;
+
+        try {
+            await auth.signInWithEmailAndPassword(email, password);
+            this.setState({email: '', password: ''})
+        } catch (err) {
+            console.error(err)
+        }
     }
 
     handleChange = event => {
